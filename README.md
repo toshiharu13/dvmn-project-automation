@@ -5,7 +5,7 @@
 Создать файл .env в корне каталога с проектом и прописать TG_TOKEN = 'токен бота'
 
 До запуска бота:
-python manage.py makemigrations
+python manage.py migrate
 
 Запустить бота:
 python manage.py bot
