@@ -1,9 +1,15 @@
 import os
 from django.core.management.base import BaseCommand, CommandError
+from environs import Env
+
+env = Env()
+env.read_env()
 
 
 class Command(BaseCommand):
     help = 'load json data to DB'
+    students_json = env.str('STUDENTS_JSON', default='students.json')
+    pm_json = env.str('PM_JSON', default='pm.json')
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -23,8 +29,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['students']:
-            os.system("python tga/manage.py loaddata students.json")
+            os.system(f'python tga/manage.py loaddata {self.students_json}')
             print('students.json loaded')
         elif options['product_manager']:
-            os.system("python tga/manage.py loaddata pm.json")
+            os.system(f'python tga/manage.py loaddata {self.pm_json}')
             print('pm.json loaded')
