@@ -1,3 +1,4 @@
+import os
 from django.core.management.base import BaseCommand, CommandError
 
 
@@ -22,6 +23,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['students']:
-            print('students loaded')
+            os.system("python tga/manage.py loaddata students.json")
+            print('students.json loaded')
         elif options['product_manager']:
-            print('pm loaded')
+            os.system("python tga/manage.py loaddata pm.json")
+            print('pm.json loaded')
