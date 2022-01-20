@@ -65,6 +65,7 @@ class Command(BaseCommand):
 
         conv_handler = ConversationHandler(
             entry_points=[CommandHandler("start", start)],
+            states={},
             fallbacks=[CommandHandler("end", end)],
         )
 
@@ -72,3 +73,13 @@ class Command(BaseCommand):
 
         updater.start_polling()
         updater.idle()
+
+
+prod_mabagers = ProjectManagers.objects.all()
+
+for prod_manager in prod_mabagers:
+    working_time = list(
+        PMWorkTime.objects.filter(project_manager__pk=prod_manager.pk))
+    print(f'менаджер {prod_manager} время:{working_time}')
+
+#djunes_students =
