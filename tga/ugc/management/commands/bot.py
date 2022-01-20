@@ -80,6 +80,13 @@ prod_mabagers = ProjectManagers.objects.all()
 for prod_manager in prod_mabagers:
     working_time = list(
         PMWorkTime.objects.filter(project_manager__pk=prod_manager.pk))
-    print(f'менаджер {prod_manager} время:{working_time}')
+    print(f'менаджер {prod_manager} время:{working_time}')  # временный принт
 
-#djunes_students =
+juniors_students = Students.objects.filter(student_level__level_name='Джун')
+novice_plus_students = Students.objects.filter(
+    student_level__level_name='Новичек+')
+novice_students = Students.objects.filter(student_level__level_name='Новичек')
+# временный принты
+print(f'Джуны: {juniors_students}')
+print(f'Новички плюс: {novice_plus_students}')
+print(f'Новички: {novice_students}')
