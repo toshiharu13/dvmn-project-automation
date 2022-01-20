@@ -1,0 +1,213 @@
+[
+  {
+    "model": "ugc.studentlevels",
+    "pk": 1,
+    "fields": {
+      "level_name": "Джун"
+    }
+  },
+  {
+    "model": "ugc.studentlevels",
+    "pk": 2,
+    "fields": {
+      "level_name": "Новичек"
+    }
+  },
+  {
+    "model": "ugc.studentlevels",
+    "pk": 3,
+    "fields": {
+      "level_name": "Новичек+"
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 1,
+    "fields": {
+      "telegram_id": 666210918,
+      "first_name": "Алексей",
+      "last_name": "Бойко",
+      "student_level": 1
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 2,
+    "fields": {
+      "telegram_id": 646431687,
+      "first_name": "Роман",
+      "last_name": "Кузьмин",
+      "student_level": 1
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 3,
+    "fields": {
+      "telegram_id": 654654,
+      "first_name": "Иван",
+      "last_name": "",
+      "student_level": 1
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 4,
+    "fields": {
+      "telegram_id": 18996106,
+      "first_name": "Виталий",
+      "last_name": "Елохин",
+      "student_level": 1
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 5,
+    "fields": {
+      "telegram_id": 8541683,
+      "first_name": "Никита",
+      "last_name": "Nori",
+      "student_level": 1
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 6,
+    "fields": {
+      "telegram_id": 845674340,
+      "first_name": "Виталий",
+      "last_name": "Клюкин",
+      "student_level": 1
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 7,
+    "fields": {
+      "telegram_id": 6544056661,
+      "first_name": "Георгий",
+      "last_name": "Винокуров",
+      "student_level": 1
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 8,
+    "fields": {
+      "telegram_id": 1961674684,
+      "first_name": "Александр",
+      "last_name": "Тен",
+      "student_level": 3
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 9,
+    "fields": {
+      "telegram_id": 446348732447781,
+      "first_name": "Роман",
+      "last_name": "Воложанин",
+      "student_level": 3
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 10,
+    "fields": {
+      "telegram_id": 57519014103433,
+      "first_name": "Игорь",
+      "last_name": "Лесков",
+      "student_level": 3
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 11,
+    "fields": {
+      "telegram_id": 105816743523,
+      "first_name": "Александр",
+      "last_name": "Блид",
+      "student_level": 3
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 12,
+    "fields": {
+      "telegram_id": 3133413143711015,
+      "first_name": "Виталий",
+      "last_name": "Бородулин",
+      "student_level": 3
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 13,
+    "fields": {
+      "telegram_id": 256239101312311,
+      "first_name": "Валерий",
+      "last_name": "Ефремов",
+      "student_level": 3
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 14,
+    "fields": {
+      "telegram_id": 2342210322164642,
+      "first_name": "Илья",
+      "last_name": "Габдрахманов",
+      "student_level": 3
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 15,
+    "fields": {
+      "telegram_id": 7862101321131538,
+      "first_name": "Максим",
+      "last_name": "Кутовой",
+      "student_level": 2
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 16,
+    "fields": {
+      "telegram_id": 1231632541634641400,
+      "first_name": "Стас",
+      "last_name": "Кошенков",
+      "student_level": 2
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 17,
+    "fields": {
+      "telegram_id": 342487556353,
+      "first_name": "Анастасия",
+      "last_name": "Головкина",
+      "student_level": 2
+    }
+  },
+  {
+    "model": "ugc.students",
+    "pk": 18,
+    "fields": {
+      "telegram_id": 34524555,
+      "first_name": "Дмитрий",
+      "last_name": "Белоусов",
+      "student_level": 2
+    }
+  },
+  {
+    "model": "ugc.projects",
+    "pk": 1,
+    "fields": {
+      "name": "проект 1",
+      "description": "тестовый проект",
+      "start": "2022-01-20",
+      "end": "2022-12-20"
+    }
+  }
+]
