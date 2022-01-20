@@ -77,6 +77,9 @@ class PMWorkTime(models.Model):
     works_to = models.TimeField(
         verbose_name="Работает по",
     )
+    week_number = models.PositiveIntegerField(
+        verbose_name="Номер недели",
+    )
     project_manager = models.ForeignKey(
         to="ugc.ProjectManagers",
         verbose_name="ПМ",
@@ -89,3 +92,27 @@ class PMWorkTime(models.Model):
     class Meta:
         verbose_name = "Часы работы ПМ"
         verbose_name_plural = "Часы работы ПМ"
+
+
+class StudentsWorkTime(models.Model):
+    works_from = models.TimeField(
+        verbose_name="Созвон с",
+    )
+    works_to = models.TimeField(
+        verbose_name="Созвон по",
+    )
+    week_number = models.PositiveIntegerField(
+        verbose_name="Номер недели",
+    )
+    student = models.ForeignKey(
+        to="ugc.Students",
+        verbose_name="Студент",
+        on_delete=models.PROTECT,
+    )
+
+    def __str__(self):
+        return f"Созвон с {self.works_from} по {self.works_to}"
+
+    class Meta:
+        verbose_name = "Время созвона студента"
+        verbose_name_plural = "Время созвона студента"
