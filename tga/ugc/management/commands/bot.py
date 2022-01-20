@@ -76,17 +76,19 @@ class Command(BaseCommand):
 
 
 prod_mabagers = ProjectManagers.objects.all()
-
-for prod_manager in prod_mabagers:
-    working_time = list(
-        PMWorkTime.objects.filter(project_manager__pk=prod_manager.pk))
-    print(f'менаджер {prod_manager} время:{working_time}')  # временный принт
-
 juniors_students = Students.objects.filter(student_level__level_name='Джун')
 novice_plus_students = Students.objects.filter(
     student_level__level_name='Новичек+')
 novice_students = Students.objects.filter(student_level__level_name='Новичек')
+pm_worktime = {}
+for prod_manager in prod_mabagers:
+    working_time = list(
+        PMWorkTime.objects.filter(project_manager__pk=prod_manager.pk))
+    pm_worktime[f'{prod_manager.first_name}_{prod_manager.last_name}'] = working_time
+
+
 # временный принты
+print(pm_worktime)
 print(f'Джуны: {juniors_students}')
 print(f'Новички плюс: {novice_plus_students}')
 print(f'Новички: {novice_students}')
