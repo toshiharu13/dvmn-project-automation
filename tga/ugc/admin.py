@@ -44,6 +44,7 @@ class ProjectManagersAdmin(admin.ModelAdmin):
 @admin.register(PMWorkTime)
 class PMWorkTimeAdmin(admin.ModelAdmin):
     list_display = (
+        "project_manager",
         "works_from",
         "works_to",
     )
