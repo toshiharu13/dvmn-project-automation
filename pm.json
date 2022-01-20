@@ -1,0 +1,56 @@
+[{
+    "model": "ugc.projectmanagers",
+    "pk": 1,
+    "fields": {
+      "first_name": "Катя",
+      "last_name": ""
+    }
+  },
+  {
+    "model": "ugc.projectmanagers",
+    "pk": 2,
+    "fields": {
+      "first_name": "Тим",
+      "last_name": ""
+    }
+  },
+  {
+    "model": "ugc.projects",
+    "pk": 1,
+    "fields": {
+      "name": "проект 1",
+      "description": "тестовый проект",
+      "start": "2022-01-20",
+      "end": "2022-12-20"
+    }
+  },
+  {
+    "model": "ugc.pmworktime",
+    "pk": 1,
+    "fields": {
+      "works_from": "08:00:00",
+      "works_to": "10:00:00",
+      "project_manager": 1,
+      "project": 1
+    }
+  },
+  {
+    "model": "ugc.pmworktime",
+    "pk": 2,
+    "fields": {
+      "works_from": "19:00:00",
+      "works_to": "21:00:00",
+      "project_manager": 1,
+      "project": 1
+    }
+  },
+  {
+    "model": "ugc.pmworktime",
+    "pk": 3,
+    "fields": {
+      "works_from": "18:00:00",
+      "works_to": "20:00:00",
+      "project_manager": 2,
+      "project": 1
+    }
+  }]
