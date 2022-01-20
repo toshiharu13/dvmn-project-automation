@@ -10,7 +10,7 @@ class StudentLevels(models.Model):
     )
 
     def __str__(self):
-        return f"Группа {self.group_name}"
+        return f"Группа {self.level_name}"
 
     class Meta:
         verbose_name = "Навык"
