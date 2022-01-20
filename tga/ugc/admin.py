@@ -4,6 +4,10 @@ from .models import StudentLevels
 from .models import Students
 from .models import ProjectManagers
 from .models import PMWorkTime
+from .models import Projects
+from .models import StudentsWorkTime
+from .models import Teams
+from .models import StudentsToCommands
 
 
 @admin.register(StudentLevels)
@@ -46,4 +50,45 @@ class PMWorkTimeAdmin(admin.ModelAdmin):
     list_edit = (
         "works_from",
         "works_to",
+    )
+
+
+@admin.register(Projects)
+class ProjectsAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "start",
+        "end",
+    )
+    list_edit = (
+        "name",
+        "start",
+        "end",
+    )
+
+
+@admin.register(StudentsWorkTime)
+class StudentsWorkTimeAdmin(admin.ModelAdmin):
+    list_display = (
+        "project",
+        "student",
+        "works_from",
+        "works_to",
+    )
+
+
+@admin.register(Teams)
+class TeamsAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "project",
+        "project_manager",
+    )
+
+
+@admin.register(StudentsToCommands)
+class StudentsToCommandsAdmin(admin.ModelAdmin):
+    list_display = (
+        "team",
+        "student",
     )
