@@ -183,7 +183,7 @@ class StudentsToCommands(models.Model):
     )
     student = models.ForeignKey(
         to="ugc.Students",
-        verbose_name="Проект",
+        verbose_name="Cтудент",
         on_delete=models.PROTECT,
     )
 
