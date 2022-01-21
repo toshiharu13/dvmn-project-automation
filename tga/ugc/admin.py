@@ -21,6 +21,7 @@ class StudentsAdmin(admin.ModelAdmin):
     list_display = (
         "first_name",
         "last_name",
+        "student_level",
     )
     list_edit = (
         "telegram_id",
