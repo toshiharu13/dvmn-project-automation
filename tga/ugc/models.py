@@ -39,6 +39,7 @@ class Students(models.Model):
         verbose_name="Уровень ученика",
         on_delete=models.PROTECT,
     )
+    is_in_team = models.BooleanField(verbose_name="Распределен в команду?", default=False)
 
     def __str__(self):
         return f"Ученик {self.first_name} {self.last_name}"
@@ -188,7 +189,7 @@ class StudentsToCommands(models.Model):
     )
 
     def __str__(self):
-        return f"Команда {self.team.name} для студента {self.student.name}"
+        return f"Команда {self.team.name} для студента {self.student.first_name}"
 
     class Meta:
         verbose_name = "Студент в команде"
