@@ -10,7 +10,7 @@ from telegram import Bot, ReplyKeyboardMarkup, InlineKeyboardButton, \
 from telegram.ext import (
     Updater,
     CommandHandler,
-    ConversationHandler,
+    ConversationHandler, MessageHandler, Filters, CallbackQueryHandler,
 )
 from telegram.utils.request import Request
 from collections import defaultdict
@@ -24,6 +24,8 @@ from ugc.models import (
 )
 
 from ugc.models import StudentsWorkTime, Projects
+
+FILL_BASE, TIME = range(2)
 
 
 def log_errors(f):
@@ -65,13 +67,8 @@ def random_db_fill(time_blocks):
 @log_errors
 def start(update, context):
     prod_mabagers = ProjectManagers.objects.all()
-    juniors_students = Students.objects.filter(student_level__level_name='Джун')
-    novice_plus_students = Students.objects.filter(
-        student_level__level_name='Новичек+')
-    novice_students = Students.objects.filter(
-        student_level__level_name='Новичек')
     pms_worktime = defaultdict(list)
-    time_blocks = defaultdict(str)
+    global time_blocks
     for prod_manager in prod_mabagers:
         working_time = PMWorkTime.objects.filter(
             project_manager__pk=prod_manager.pk)
@@ -90,10 +87,34 @@ def start(update, context):
         while converted_from <= convert_to + delta:
             converted_from += delta
             time_blocks[
-                f'{(converted_from - delta).time()}-{(converted_from).time()}'] = [
-                (converted_from - delta), (converted_from)]
-    random_db_fill(time_blocks)
-    #print(time_blocks)
+                f'{(converted_from - delta).time()}-{(converted_from).time()}'] = [(converted_from - delta), (converted_from)]
+
+    keyboard = []
+    for key in list(time_blocks.keys()):
+        keyboard.append(
+            [InlineKeyboardButton(text=key, callback_data=str(key))]
+        )
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text(
+        "Выбирите удобное время созвона",
+        reply_markup=reply_markup,
+    )
+    #random_db_fill(time_blocks)
+    return FILL_BASE
+
+
+@log_errors
+def fill_base(update, context):
+    testa = update
+    user_id = testa['_effective_user']['id']
+    button = testa['callback_query']['data']
+    student = get_object_or_404(Students, telegram_id=user_id)
+    time_to_call = StudentsWorkTime.objects.get(pk=student.pk)
+
+    time_to_call.works_from = time_blocks[button][0]
+    time_to_call.works_to = time_blocks[button][1]
+    time_to_call.save()
 
 
 @log_errors
@@ -126,7 +147,11 @@ class Command(BaseCommand):
 
         conv_handler = ConversationHandler(
             entry_points=[CommandHandler("start", start)],
-            states={},
+            states={
+                FILL_BASE: [
+                    CallbackQueryHandler(fill_base, pattern='\S')
+                ],
+            },
             fallbacks=[CommandHandler("end", end)],
         )
 
@@ -136,10 +161,5 @@ class Command(BaseCommand):
         updater.idle()
 
 
+time_blocks = defaultdict(str)
 
-
-# временный принты
-#print(pms_worktime)
-#print(f'Джуны: {juniors_students}')
-#print(f'Новички плюс: {novice_plus_students}')
-#print(f'Новички: {novice_students}')
