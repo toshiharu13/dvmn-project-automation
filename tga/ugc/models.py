@@ -38,6 +38,7 @@ class Students(models.Model):
         to="ugc.StudentLevels",
         verbose_name="Уровень ученика",
         on_delete=models.PROTECT,
+        related_name="students",
     )
     is_in_team = models.BooleanField(verbose_name="Распределен в команду?", default=False)
 
