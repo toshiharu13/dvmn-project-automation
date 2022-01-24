@@ -28,13 +28,13 @@ def log_errors(f):
     return inner
 
 
-def fill_student_call_table(time_blocks, jun_student):
+def fill_student_call_table(time_blocks, student):
     time_block = random.choice(list(time_blocks))
-    StudentsWorkTime.objects.get_or_create(
-        works_from=time_blocks[time_block][0],
-        works_to=time_blocks[time_block][1],
+    StudentsWorkTime.objects.update_or_create(
         project=Projects.objects.all().first(),
-        student=get_object_or_404(Students, pk=jun_student.pk),
+        student=get_object_or_404(Students, pk=student.pk),
+        defaults={'works_from': time_blocks[time_block][0],
+                  'works_to': time_blocks[time_block][1]},
     )[0]
 
 def randomly_fill_students_call(time_blocks):
@@ -95,16 +95,16 @@ def start(update, context):
 
 
 @log_errors
-def fill_base(update, context):
+def fill_students_worktime_table(update, context):
     user_id = update['_effective_user']['id']
     time_blocks_from_to = update['callback_query']['data']
     student = get_object_or_404(Students, telegram_id=user_id)
 
-    StudentsWorkTime.objects.get_or_create(
-        works_from=time_blocks[time_blocks_from_to][0],
-        works_to=time_blocks[time_blocks_from_to][1],
+    StudentsWorkTime.objects.update_or_create(
         project=Projects.objects.all().first(),
         student=get_object_or_404(Students, pk=student.pk),
+        defaults={'works_from': time_blocks[time_blocks_from_to][0],
+                  'works_to': time_blocks[time_blocks_from_to][1]},
     )[0]
 
 
@@ -140,7 +140,7 @@ class Command(BaseCommand):
             entry_points=[CommandHandler("start", start)],
             states={
                 FILL_BASE: [
-                    CallbackQueryHandler(fill_base, pattern='\S')
+                    CallbackQueryHandler(fill_students_worktime_table, pattern='\S')
                 ],
             },
             fallbacks=[CommandHandler("end", end)],
