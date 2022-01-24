@@ -138,11 +138,10 @@ class Command(BaseCommand):
 
         conv_handler = ConversationHandler(
             entry_points=[CommandHandler("start", start)],
-            states={
-                FILL_BASE: [
-                    CallbackQueryHandler(fill_students_worktime_table, pattern='\S')
-                ],
-            },
+            states={FILL_BASE: [CallbackQueryHandler(
+                fill_students_worktime_table,
+                pattern='\S')
+                ]},
             fallbacks=[CommandHandler("end", end)],
         )
 
