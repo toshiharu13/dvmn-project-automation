@@ -84,7 +84,7 @@
     "model": "ugc.students",
     "pk": 7,
     "fields": {
-      "telegram_id": 6544056661,
+      "telegram_id": 654405666,
       "first_name": "Георгий",
       "last_name": "Винокуров",
       "student_level": 1
@@ -94,7 +94,7 @@
     "model": "ugc.students",
     "pk": 8,
     "fields": {
-      "telegram_id": 1961674684,
+      "telegram_id": 196167468,
       "first_name": "Александр",
       "last_name": "Тен",
       "student_level": 3
@@ -104,7 +104,7 @@
     "model": "ugc.students",
     "pk": 9,
     "fields": {
-      "telegram_id": 446348732447781,
+      "telegram_id": 446348732,
       "first_name": "Роман",
       "last_name": "Воложанин",
       "student_level": 3
@@ -114,7 +114,7 @@
     "model": "ugc.students",
     "pk": 10,
     "fields": {
-      "telegram_id": 57519014103433,
+      "telegram_id": 575190141,
       "first_name": "Игорь",
       "last_name": "Лесков",
       "student_level": 3
@@ -124,7 +124,7 @@
     "model": "ugc.students",
     "pk": 11,
     "fields": {
-      "telegram_id": 105816743523,
+      "telegram_id": 105816743,
       "first_name": "Александр",
       "last_name": "Блид",
       "student_level": 3
@@ -134,7 +134,7 @@
     "model": "ugc.students",
     "pk": 12,
     "fields": {
-      "telegram_id": 3133413143711015,
+      "telegram_id": 313341314,
       "first_name": "Виталий",
       "last_name": "Бородулин",
       "student_level": 3
@@ -144,7 +144,7 @@
     "model": "ugc.students",
     "pk": 13,
     "fields": {
-      "telegram_id": 256239101312311,
+      "telegram_id": 256239101,
       "first_name": "Валерий",
       "last_name": "Ефремов",
       "student_level": 3
@@ -154,7 +154,7 @@
     "model": "ugc.students",
     "pk": 14,
     "fields": {
-      "telegram_id": 2342210322164642,
+      "telegram_id": 234221032,
       "first_name": "Илья",
       "last_name": "Габдрахманов",
       "student_level": 3
@@ -164,7 +164,7 @@
     "model": "ugc.students",
     "pk": 15,
     "fields": {
-      "telegram_id": 7862101321131538,
+      "telegram_id": 786210132,
       "first_name": "Максим",
       "last_name": "Кутовой",
       "student_level": 2
@@ -174,7 +174,7 @@
     "model": "ugc.students",
     "pk": 16,
     "fields": {
-      "telegram_id": 1231632541634641400,
+      "telegram_id": 123163254,
       "first_name": "Стас",
       "last_name": "Кошенков",
       "student_level": 2
@@ -184,7 +184,7 @@
     "model": "ugc.students",
     "pk": 17,
     "fields": {
-      "telegram_id": 342487556353,
+      "telegram_id": 342487556,
       "first_name": "Анастасия",
       "last_name": "Головкина",
       "student_level": 2
