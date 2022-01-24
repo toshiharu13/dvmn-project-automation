@@ -1,13 +1,9 @@
-from models import StudentLevels
-from .models import Students
-from .models import ProjectManagers
-from .models import PMWorkTime
-from .models import Projects
-from .models import StudentsWorkTime
-from .models import Teams
-from .models import StudentsToCommands
 from datetime import datetime
 
+from models import StudentLevels
+
+from .models import (PMWorkTime, ProjectManagers, Projects, Students,
+                     StudentsToCommands, StudentsWorkTime, Teams)
 
 
 def distribution_by_teams(skill):

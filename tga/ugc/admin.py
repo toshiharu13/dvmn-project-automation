@@ -1,13 +1,7 @@
 from django.contrib import admin
 
-from .models import StudentLevels
-from .models import Students
-from .models import ProjectManagers
-from .models import PMWorkTime
-from .models import Projects
-from .models import StudentsWorkTime
-from .models import Teams
-from .models import StudentsToCommands
+from .models import (PMWorkTime, ProjectManagers, Projects, StudentLevels,
+                     Students, StudentsToCommands, StudentsWorkTime, Teams)
 
 
 @admin.register(StudentLevels)

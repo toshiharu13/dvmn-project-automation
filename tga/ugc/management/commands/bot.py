@@ -1,31 +1,20 @@
 import datetime
 import random
-
-from django.shortcuts import get_object_or_404
-from environs import Env
-from django.core.management.base import BaseCommand
-from django.conf import settings
-from telegram import Bot, ReplyKeyboardMarkup, InlineKeyboardButton, \
-    InlineKeyboardMarkup
-from telegram.ext import (
-    Updater,
-    CommandHandler,
-    ConversationHandler, MessageHandler, Filters, CallbackQueryHandler,
-)
-from telegram.utils.request import Request
 from collections import defaultdict
 
+from django.conf import settings
+from django.core.management.base import BaseCommand
+from django.shortcuts import get_object_or_404
+from environs import Env
+from telegram import (Bot, InlineKeyboardButton, InlineKeyboardMarkup)
+from telegram.ext import (CallbackQueryHandler, CommandHandler,
+                          ConversationHandler, Filters, MessageHandler,
+                          Updater)
+from telegram.utils.request import Request
+from ugc.models import (PMWorkTime, ProjectManagers, Projects, StudentLevels,
+                        Students, StudentsWorkTime)
 
-from ugc.models import (
-    StudentLevels,
-    Students,
-    ProjectManagers,
-    PMWorkTime,
-)
-
-from ugc.models import StudentsWorkTime, Projects
-
-FILL_BASE, TIME = range(2)
+FILL_BASE = range(1)
 
 
 def log_errors(f):
@@ -39,7 +28,7 @@ def log_errors(f):
     return inner
 
 
-def student_fill_db(time_blocks, jun_student):
+def fill_student_call_table(time_blocks, jun_student):
     time_block = random.choice(list(time_blocks))
     StudentsWorkTime.objects.get_or_create(
         works_from=time_blocks[time_block][0],
@@ -48,18 +37,18 @@ def student_fill_db(time_blocks, jun_student):
         student=get_object_or_404(Students, pk=jun_student.pk),
     )[0]
 
-def random_db_fill(time_blocks):
+def randomly_fill_students_call(time_blocks):
     juniors_students = Students.objects.filter(student_level__level_name='Джун')
     novice_plus_students = Students.objects.filter(
         student_level__level_name='Новичек+')
     novice_students = Students.objects.filter(
         student_level__level_name='Новичек')
     for jun_student in juniors_students:
-        student_fill_db(time_blocks, jun_student)
+        fill_student_call_table(time_blocks, jun_student)
     for nov_plus_student in novice_plus_students:
-        student_fill_db(time_blocks, nov_plus_student)
+        fill_student_call_table(time_blocks, nov_plus_student)
     for nov_student in novice_students:
-        student_fill_db(time_blocks, nov_student)
+        fill_student_call_table(time_blocks, nov_student)
     print(StudentsWorkTime.objects.all())
 
 
@@ -100,8 +89,8 @@ def start(update, context):
         "Выбирите удобное время созвона",
         reply_markup=reply_markup,
     )
-    # в случае необходимости рандомно заполнить базу созвоном студентов
-    #random_db_fill(time_blocks)
+    # в случае необходимости, рандомно заполнить таблицу созвонов студентов
+    #randomly_fill_students_call(time_blocks)
     return FILL_BASE
 
 
