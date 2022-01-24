@@ -1,1 +1,1 @@
-python tga/manage.py bot
+worker: python tga/manage.py bot
