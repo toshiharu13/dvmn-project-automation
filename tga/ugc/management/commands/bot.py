@@ -100,6 +100,7 @@ def start(update, context):
         "Выбирите удобное время созвона",
         reply_markup=reply_markup,
     )
+    # в случае необходимости рандомно заполнить базу созвоном студентов
     #random_db_fill(time_blocks)
     return FILL_BASE
 
@@ -110,11 +111,13 @@ def fill_base(update, context):
     user_id = testa['_effective_user']['id']
     button = testa['callback_query']['data']
     student = get_object_or_404(Students, telegram_id=user_id)
-    time_to_call = StudentsWorkTime.objects.get(pk=student.pk)
 
-    time_to_call.works_from = time_blocks[button][0]
-    time_to_call.works_to = time_blocks[button][1]
-    time_to_call.save()
+    StudentsWorkTime.objects.get_or_create(
+        works_from=time_blocks[button][0],
+        works_to=time_blocks[button][1],
+        project=Projects.objects.all().first(),
+        student=get_object_or_404(Students, pk=student.pk),
+    )[0]
 
 
 @log_errors
