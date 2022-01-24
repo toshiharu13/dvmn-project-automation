@@ -96,14 +96,13 @@ def start(update, context):
 
 @log_errors
 def fill_base(update, context):
-    testa = update
-    user_id = testa['_effective_user']['id']
-    button = testa['callback_query']['data']
+    user_id = update['_effective_user']['id']
+    time_blocks_from_to = update['callback_query']['data']
     student = get_object_or_404(Students, telegram_id=user_id)
 
     StudentsWorkTime.objects.get_or_create(
-        works_from=time_blocks[button][0],
-        works_to=time_blocks[button][1],
+        works_from=time_blocks[time_blocks_from_to][0],
+        works_to=time_blocks[time_blocks_from_to][1],
         project=Projects.objects.all().first(),
         student=get_object_or_404(Students, pk=student.pk),
     )[0]
